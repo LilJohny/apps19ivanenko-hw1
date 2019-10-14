@@ -9,15 +9,15 @@ public class TemperatureSeriesAnalysis {
     private int capacity;
 
     public TemperatureSeriesAnalysis() {
-        this.temperatureSeries = null;
+        this.temperatureSeries = new double[50];
     }
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
-        int seriesLength = temperatureSeries.length;
-        this.temperatureSeries = new double[seriesLength];
-        System.arraycopy(temperatureSeries, 0,this.temperatureSeries,0, seriesLength);
         this.length = temperatureSeries.length;
         this.capacity = temperatureSeries.length;
+        this.temperatureSeries = new double[length];
+        System.arraycopy(temperatureSeries, 0,this.temperatureSeries,0, length);
+
     }
 
     public double average() {
