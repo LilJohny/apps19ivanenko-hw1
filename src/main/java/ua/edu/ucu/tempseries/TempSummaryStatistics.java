@@ -5,7 +5,7 @@ public class TempSummaryStatistics {
     private final double minTemp;
     private final double avgTemp;
     private final double devTemp;
-    public TempSummaryStatistics(double avg, double dev, double min, double max) {
+    TempSummaryStatistics(double avg, double dev, double min, double max) {
         this.avgTemp = avg;
         this.devTemp = dev;
         this.minTemp = min;

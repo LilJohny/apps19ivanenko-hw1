@@ -35,7 +35,8 @@ public class TemperatureSeriesAnalysis {
             double standardDeviation = 0;
             double average = this.average();
             for (int i = 0; i < this.temperatureSeries.length; i++) {
-                standardDeviation += Math.pow((this.temperatureSeries[i] - average), 2.0)
+                double distance = this.temperatureSeries[i] - average;
+                standardDeviation += Math.pow((distance), 2.0)
                         / this.temperatureSeries.length;
             }
             standardDeviation = Math.sqrt(standardDeviation);
@@ -148,9 +149,9 @@ public class TemperatureSeriesAnalysis {
     public int addTemps(double... temps) {
         if (capacity - length < temps.length) {
             double[] newSeries = new double[this.length * 2];
-            double[] Series = this.temperatureSeries;
+            double[] series = this.temperatureSeries;
             if (this.length >= 0) {
-                System.arraycopy(Series, 0, newSeries, 0, this.length);
+                System.arraycopy(series, 0, newSeries, 0, this.length);
             }
             this.temperatureSeries = newSeries;
         }
