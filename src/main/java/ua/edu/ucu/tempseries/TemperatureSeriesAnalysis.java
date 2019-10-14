@@ -5,6 +5,7 @@ public class TemperatureSeriesAnalysis {
     private double[] temperatureSeries;
     private int length;
     private int capacity;
+
     public TemperatureSeriesAnalysis() {
         this.temperatureSeries = null;
     }
@@ -31,13 +32,14 @@ public class TemperatureSeriesAnalysis {
         if (this.temperatureSeries.length == 0) {
             throw new IllegalArgumentException("Temperature series is empty");
         } else {
-            double standard_deviation = 0;
+            double standardDeviation = 0;
             double average = this.average();
             for (int i = 0; i < this.temperatureSeries.length; i++) {
-                standard_deviation += ((this.temperatureSeries[i] - average) * (this.temperatureSeries[i] - average)) / this.temperatureSeries.length;
+                standardDeviation += ((this.temperatureSeries[i] - average) * (this.temperatureSeries[i] - average)) /
+                        this.temperatureSeries.length;
             }
-            standard_deviation = Math.sqrt(standard_deviation);
-            return standard_deviation;
+            standardDeviation = Math.sqrt(standardDeviation);
+            return standardDeviation;
         }
     }
 
@@ -81,7 +83,7 @@ public class TemperatureSeriesAnalysis {
         } else {
             double closestTemp = this.temperatureSeries[0];
             double closestTempDistance = closestTemp - tempValue;
-            for (int i = 1; i < this.temperatureSeries.length; i++) {
+            for (int i = 1; i < this.length; i++) {
                 if (this.temperatureSeries[i] - tempValue < closestTempDistance) {
                     closestTemp = this.temperatureSeries[i];
                     closestTempDistance = this.temperatureSeries[i] - tempValue;
@@ -132,20 +134,25 @@ public class TemperatureSeriesAnalysis {
         if (this.temperatureSeries.length == 0) {
             throw new IllegalArgumentException("Temperature series is empty");
         } else {
-            return new TempSummaryStatistics(this.average(), this.deviation(), this.min(), this.max());
+            double avgTemp = this.average();
+            double devTemp = this.deviation();
+            double minTemp = this.min();
+            double maxTemp = this.max();
+            return new TempSummaryStatistics(avgTemp, devTemp, minTemp, maxTemp);
         }
     }
 
     public int addTemps(double... temps) {
-        if(capacity - length < temps.length){
-            double[] newSeries = new double [this.length*2];
-            if (this.length >= 0) System.arraycopy(this.temperatureSeries, 0, newSeries, 0, this.length);
+        if (capacity - length < temps.length) {
+            double[] newSeries = new double[this.length * 2];
+            if (this.length >= 0)
+                System.arraycopy(this.temperatureSeries, 0, newSeries, 0, this.length);
             this.temperatureSeries = newSeries;
         }
-            int j = 0;
-            for (int i = this.length; i < this.length+temps.length; i++) {
-                this.temperatureSeries[i] = temps[j];
-            }
+        int j = 0;
+        for (int i = this.length; i < this.length + temps.length; i++) {
+            this.temperatureSeries[i] = temps[j];
+        }
         return this.temperatureSeries.length;
     }
 }
