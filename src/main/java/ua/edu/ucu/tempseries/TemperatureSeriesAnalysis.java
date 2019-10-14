@@ -1,11 +1,15 @@
 package ua.edu.ucu.tempseries;
 
 
+import java.util.InputMismatchException;
+
 public class TemperatureSeriesAnalysis {
+    private static final int DEFAULT_SERIES_SIZE = 50;
+    private static final double MIN_POSSIBLE_TEMP = -273.0;
     private double[] temperatureSeries;
     private int length;
     private int capacity;
-    static final int DEFAULT_SERIES_SIZE = 50;
+
     public TemperatureSeriesAnalysis() {
         this.temperatureSeries = new double[DEFAULT_SERIES_SIZE];
     }
@@ -14,6 +18,11 @@ public class TemperatureSeriesAnalysis {
         this.length = temperatureSeries.length;
         this.capacity = temperatureSeries.length;
         this.temperatureSeries = new double[length];
+        for (double temp : temperatureSeries) {
+            if (temp < MIN_POSSIBLE_TEMP) {
+                throw new InputMismatchException("Temperature is out of range");
+            }
+        }
         System.arraycopy(temperatureSeries, 0, this.temperatureSeries, 0, length);
 
     }
