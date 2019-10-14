@@ -36,7 +36,7 @@ public class TemperatureSeriesAnalysis {
             double average = this.average();
             for (int i = 0; i < this.temperatureSeries.length; i++) {
                 double distance = this.temperatureSeries[i] - average;
-                standardDeviation += Math.pow((distance), 2.0)
+                standardDeviation += Math.pow(distance, 2.0)
                         / this.temperatureSeries.length;
             }
             standardDeviation = Math.sqrt(standardDeviation);
