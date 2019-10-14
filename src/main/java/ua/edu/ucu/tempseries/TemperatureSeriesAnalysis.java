@@ -35,8 +35,8 @@ public class TemperatureSeriesAnalysis {
             double standardDeviation = 0;
             double average = this.average();
             for (int i = 0; i < this.temperatureSeries.length; i++) {
-                standardDeviation += ((this.temperatureSeries[i] - average) * (this.temperatureSeries[i] - average)) /
-                        this.temperatureSeries.length;
+                standardDeviation += ((this.temperatureSeries[i] - average) * (this.temperatureSeries[i] - average))
+                        / this.temperatureSeries.length;
             }
             standardDeviation = Math.sqrt(standardDeviation);
             return standardDeviation;
@@ -49,8 +49,9 @@ public class TemperatureSeriesAnalysis {
         } else {
             double min = this.temperatureSeries[0];
             for (int i = 1; i < this.temperatureSeries.length; i++) {
-                if (min >= this.temperatureSeries[i])
+                if (min >= this.temperatureSeries[i]) {
                     min = this.temperatureSeries[i];
+                }
             }
             return min;
         }
@@ -62,8 +63,9 @@ public class TemperatureSeriesAnalysis {
         } else {
             double max = this.temperatureSeries[0];
             for (int i = 1; i < this.temperatureSeries.length; i++) {
-                if (max <= this.temperatureSeries[i])
+                if (max <= this.temperatureSeries[i]) {
                     max = this.temperatureSeries[i];
+                }
             }
             return max;
         }
@@ -84,9 +86,10 @@ public class TemperatureSeriesAnalysis {
             double closestTemp = this.temperatureSeries[0];
             double closestTempDistance = closestTemp - tempValue;
             for (int i = 1; i < this.length; i++) {
-                if (this.temperatureSeries[i] - tempValue < closestTempDistance) {
+                double currentDistance = this.temperatureSeries[i] - tempValue;
+                if (currentDistance < closestTempDistance) {
                     closestTemp = this.temperatureSeries[i];
-                    closestTempDistance = this.temperatureSeries[i] - tempValue;
+                    closestTempDistance = currentDistance;
                 }
             }
             return closestTemp;
@@ -145,8 +148,9 @@ public class TemperatureSeriesAnalysis {
     public int addTemps(double... temps) {
         if (capacity - length < temps.length) {
             double[] newSeries = new double[this.length * 2];
-            if (this.length >= 0)
+            if (this.length >= 0) {
                 System.arraycopy(this.temperatureSeries, 0, newSeries, 0, this.length);
+            }
             this.temperatureSeries = newSeries;
         }
         int j = 0;
