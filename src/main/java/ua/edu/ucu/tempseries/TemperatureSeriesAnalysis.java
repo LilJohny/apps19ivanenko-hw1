@@ -1,6 +1,8 @@
 package ua.edu.ucu.tempseries;
 
 
+import java.util.Arrays;
+
 public class TemperatureSeriesAnalysis {
     private double[] temperatureSeries;
     private int length;
@@ -11,7 +13,9 @@ public class TemperatureSeriesAnalysis {
     }
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
-        this.temperatureSeries = temperatureSeries;
+        int seriesLength = temperatureSeries.length;
+        this.temperatureSeries = new double[seriesLength];
+        System.arraycopy(temperatureSeries, 0,this.temperatureSeries,0, seriesLength);
         this.length = temperatureSeries.length;
         this.capacity = temperatureSeries.length;
     }
