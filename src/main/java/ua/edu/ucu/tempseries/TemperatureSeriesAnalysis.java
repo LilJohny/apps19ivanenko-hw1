@@ -35,7 +35,7 @@ public class TemperatureSeriesAnalysis {
             double standardDeviation = 0;
             double average = this.average();
             for (int i = 0; i < this.temperatureSeries.length; i++) {
-                standardDeviation += ((this.temperatureSeries[i] - average) * (this.temperatureSeries[i] - average))
+                standardDeviation += Math.pow((this.temperatureSeries[i] - average), 2.0)
                         / this.temperatureSeries.length;
             }
             standardDeviation = Math.sqrt(standardDeviation);
@@ -137,19 +137,20 @@ public class TemperatureSeriesAnalysis {
         if (this.temperatureSeries.length == 0) {
             throw new IllegalArgumentException("Temperature series is empty");
         } else {
-            double avgTemp = this.average();
-            double devTemp = this.deviation();
-            double minTemp = this.min();
-            double maxTemp = this.max();
-            return new TempSummaryStatistics(avgTemp, devTemp, minTemp, maxTemp);
+            double avg = this.average();
+            double dev = this.deviation();
+            double min = this.min();
+            double max = this.max();
+            return new TempSummaryStatistics(avg, dev, min, max);
         }
     }
 
     public int addTemps(double... temps) {
         if (capacity - length < temps.length) {
             double[] newSeries = new double[this.length * 2];
+            double[] Series = this.temperatureSeries;
             if (this.length >= 0) {
-                System.arraycopy(this.temperatureSeries, 0, newSeries, 0, this.length);
+                System.arraycopy(Series, 0, newSeries, 0, this.length);
             }
             this.temperatureSeries = newSeries;
         }
