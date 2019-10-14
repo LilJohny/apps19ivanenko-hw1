@@ -160,9 +160,9 @@ public class TemperatureSeriesAnalysis {
     public int addTemps(double... temps) {
         if (capacity - length < temps.length) {
             double[] newSeries = new double[this.length * 2];
-            double[] series = this.series;
+            double[] oldSeries = this.series;
             if (this.length >= 0) {
-                System.arraycopy(series, 0, newSeries, 0, this.length);
+                System.arraycopy(oldSeries, 0, newSeries, 0, this.length);
             }
             this.series = newSeries;
         }
