@@ -1,22 +1,20 @@
 package ua.edu.ucu.tempseries;
 
 
-import java.util.Arrays;
-
 public class TemperatureSeriesAnalysis {
     private double[] temperatureSeries;
     private int length;
     private int capacity;
-
+    static final int DEFAULT_SERIES_SIZE = 50;
     public TemperatureSeriesAnalysis() {
-        this.temperatureSeries = new double[50];
+        this.temperatureSeries = new double[DEFAULT_SERIES_SIZE];
     }
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
         this.length = temperatureSeries.length;
         this.capacity = temperatureSeries.length;
         this.temperatureSeries = new double[length];
-        System.arraycopy(temperatureSeries, 0,this.temperatureSeries,0, length);
+        System.arraycopy(temperatureSeries, 0, this.temperatureSeries, 0, length);
 
     }
 
