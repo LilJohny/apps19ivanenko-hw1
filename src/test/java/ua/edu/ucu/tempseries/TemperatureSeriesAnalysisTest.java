@@ -20,9 +20,9 @@ public class TemperatureSeriesAnalysisTest {
         assertEquals(expResult, actualResult, 0.00001);
     }
 
-    @Ignore
+
     @Test(expected = IllegalArgumentException.class)
-    public void testAverageWithEmptyArray() {
+    public void testAverageFailure() {
         double[] temperatureSeries = {};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
 
@@ -30,7 +30,7 @@ public class TemperatureSeriesAnalysisTest {
         seriesAnalysis.average();
     }
 
-    @Ignore
+
     @Test
     public void testAverage() {
         double[] temperatureSeries = {3.0, -5.0, 1.0, 5.0};
@@ -40,6 +40,35 @@ public class TemperatureSeriesAnalysisTest {
         double actualResult = seriesAnalysis.average();
         
         assertEquals(expResult, actualResult, 0.00001);        
+    }
+    @Test
+    public void testMin(){
+        double[] temperatureSeries = {3.0, -5.0, 1.0, 5.0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        double expResult = -5.0;
+        double actualResult = seriesAnalysis.min();
+        assertEquals(expResult, actualResult, 0.00001);
+    }
+    @Test(expected=IllegalArgumentException.class)
+    public void testMinFailure(){
+        double[] temperatureSeries = {};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        double actualResult = seriesAnalysis.min();
+
+    }
+    @Test
+    public void testMax(){
+        double[] temperatureSeries = {3.0, -5.0, 1.0, 5.0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        double expResult = 5.0;
+        double actualResult = seriesAnalysis.max();
+        assertEquals(expResult, actualResult, 0.00001);
+    }
+    @Test
+    public void testMaxFailure(){
+        double[] temperatureSeries = {};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        double actualResult = seriesAnalysis.deviation();
     }
     @Test
     public void testDeviation(){
