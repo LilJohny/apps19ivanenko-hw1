@@ -49,5 +49,13 @@ public class TemperatureSeriesAnalysisTest {
         double actualResult = seriesAnalysis.deviation();
         assertEquals(expResult, actualResult, 0.00001);
     }
+    @Test(expected = IllegalArgumentException.class)
+    public void testDeviationFailure(){
+        double[] temperatureSeries = {};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+
+        double actualResult = seriesAnalysis.deviation();
+
+    }
 
 }
