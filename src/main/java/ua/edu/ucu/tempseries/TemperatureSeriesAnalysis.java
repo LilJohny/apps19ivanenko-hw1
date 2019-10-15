@@ -96,9 +96,9 @@ public class TemperatureSeriesAnalysis {
             throw new IllegalArgumentException("Temperature series is empty");
         } else {
             double closestTemp = this.series[0];
-            double closestTempDistance = closestTemp - tempValue;
+            double closestTempDistance = Math.abs(closestTemp - tempValue);
             for (int i = 1; i < this.length; i++) {
-                double currentDistance = this.series[i] - tempValue;
+                double currentDistance = Math.abs(this.series[i] - tempValue);
                 if (currentDistance < closestTempDistance) {
                     closestTemp = this.series[i];
                     closestTempDistance = currentDistance;
