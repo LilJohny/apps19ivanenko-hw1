@@ -41,6 +41,13 @@ public class TemperatureSeriesAnalysisTest {
         
         assertEquals(expResult, actualResult, 0.00001);        
     }
-    
+    @Test
+    public void testDeviation(){
+        double[] temperatureSeries = {3.0, -5.0, 1.0, 5.0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        double expResult = 3.7416573867739413;
+        double actualResult = seriesAnalysis.deviation();
+        assertEquals(expResult, actualResult, 0.00001);
+    }
 
 }
