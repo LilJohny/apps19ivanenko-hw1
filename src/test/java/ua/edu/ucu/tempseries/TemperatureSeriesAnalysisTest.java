@@ -135,13 +135,28 @@ public class TemperatureSeriesAnalysisTest {
         double[] actualResult = seriesAnalysis.findTempsLessThen(1.0);
         assertArrayEquals(actualResult, expResult, 0.00001);
     }
+
     @Test
     public void testFindTempsGreaterThen() {
         double[] temperatureSeries = {3.0, -5.0, 1.0, 5.0};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
-        double[] expResult = {3.0,5.0};
+        double[] expResult = {3.0, 5.0};
         double[] actualResult = seriesAnalysis.findTempsGreaterThen(1.0);
         assertArrayEquals(actualResult, expResult, 0.00001);
+    }
+
+    @Test
+    public void testStatistics() {
+        double max = 1.0;
+        double min = 2.0;
+        double dev = 3.0;
+        double avg = 4.0;
+        TempSummaryStatistics statistics = new TempSummaryStatistics(avg, dev, min, max);
+        assertEquals(avg, statistics.getAvgTemp(), 0.0001);
+        assertEquals(dev, statistics.getDevTemp(), 0.0001);
+        assertEquals(min, statistics.getMinTemp(), 0.0001);
+        assertEquals(max, statistics.getMaxTemp(), 0.0001);
+
     }
 
 }
