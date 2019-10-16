@@ -15,27 +15,6 @@ public class TempSummaryStatistics {
         this.minTemp = min;
         this.maxTemp = max;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        TempSummaryStatistics that = (TempSummaryStatistics) o;
-        return Double.compare(that.maxTemp, maxTemp) == 0
-                && Double.compare(that.minTemp, minTemp) == 0
-                && Double.compare(that.avgTemp, avgTemp) == 0
-                && Double.compare(that.devTemp, devTemp) == 0;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(maxTemp, minTemp, avgTemp, devTemp);
-    }
-
     public double getMaxTemp() {
         return maxTemp;
     }
