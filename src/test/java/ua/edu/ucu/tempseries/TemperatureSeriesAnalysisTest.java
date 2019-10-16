@@ -158,5 +158,13 @@ public class TemperatureSeriesAnalysisTest {
         assertEquals(max, statistics.getMaxTemp(), 0.0001);
 
     }
+    @Test
+    public void testAddTemps(){
+        double[] temperatureSeries = {3.0, -5.0, 1.0, 5.0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        int expResult = 6;
+        int actualResult = seriesAnalysis.addTemps(3.7, 9.3);
+        assertEquals(expResult, actualResult);
+    }
 
 }

@@ -27,85 +27,80 @@ public class TemperatureSeriesAnalysis {
 
     }
 
-    public double average() {
-        double average = 0.0;
+    public void checkIllegalArgumentException(double[] series) {
         if (this.series.length == 0) {
             throw new IllegalArgumentException("Temperature series is empty");
-        } else {
-            for (double temperature : this.series) {
-                average += temperature;
-            }
-            return average / this.series.length;
         }
+    }
+
+    public double average() {
+        checkIllegalArgumentException(this.series);
+        double average = 0.0;
+
+        for (double temperature : this.series) {
+            average += temperature;
+        }
+        return average / this.series.length;
+
     }
 
     public double deviation() {
-        if (this.series.length == 0) {
-            throw new IllegalArgumentException("Temperature series is empty");
-        } else {
-            double standardDeviation = 0;
-            double average = this.average();
-            for (int i = 0; i < this.series.length; i++) {
-                double distance = this.series[i] - average;
-                standardDeviation += Math.pow(distance, 2.0)
-                        / this.series.length;
-            }
-            standardDeviation = Math.sqrt(standardDeviation);
-            return standardDeviation;
+        checkIllegalArgumentException(this.series);
+        double standardDeviation = 0;
+        double average = this.average();
+        for (int i = 0; i < this.series.length; i++) {
+            double distance = this.series[i] - average;
+            standardDeviation += Math.pow(distance, 2.0)
+                    / this.series.length;
         }
+        standardDeviation = Math.sqrt(standardDeviation);
+        return standardDeviation;
+
     }
 
     public double min() {
-        if (this.series.length == 0) {
-            throw new IllegalArgumentException("Temperature series is empty");
-        } else {
-            double min = this.series[0];
-            for (int i = 1; i < this.series.length; i++) {
-                if (min >= this.series[i]) {
-                    min = this.series[i];
-                }
+        checkIllegalArgumentException(this.series);
+        double min = this.series[0];
+        for (int i = 1; i < this.series.length; i++) {
+            if (min >= this.series[i]) {
+                min = this.series[i];
             }
-            return min;
         }
+        return min;
+
     }
 
     public double max() {
-        if (this.series.length == 0) {
-            throw new IllegalArgumentException("Temperature series is empty");
-        } else {
-            double max = this.series[0];
-            for (int i = 1; i < this.series.length; i++) {
-                if (max <= this.series[i]) {
-                    max = this.series[i];
-                }
+        checkIllegalArgumentException(this.series);
+        double max = this.series[0];
+        for (int i = 1; i < this.series.length; i++) {
+            if (max <= this.series[i]) {
+                max = this.series[i];
             }
-            return max;
         }
+        return max;
+
     }
 
     public double findTempClosestToZero() {
-        if (this.series.length == 0) {
-            throw new IllegalArgumentException("Temperature series is empty");
-        } else {
-            return this.findTempClosestToValue(0.0);
-        }
+        checkIllegalArgumentException(this.series);
+        return this.findTempClosestToValue(0.0);
+
     }
 
     public double findTempClosestToValue(double tempValue) {
-        if (this.series.length == 0) {
-            throw new IllegalArgumentException("Temperature series is empty");
-        } else {
-            double closestTemp = this.series[0];
-            double closestTempDistance = Math.abs(closestTemp - tempValue);
-            for (int i = 1; i < this.length; i++) {
-                double currentDistance = Math.abs(this.series[i] - tempValue);
-                if (currentDistance < closestTempDistance) {
-                    closestTemp = this.series[i];
-                    closestTempDistance = currentDistance;
-                }
+        checkIllegalArgumentException(this.series);
+        double closestTemp = this.series[0];
+        double closestTempDistance = Math.abs(closestTemp - tempValue);
+        for (int i = 1; i < this.length; i++) {
+            double currentDistance = Math.abs(this.series[i] - tempValue);
+            if (currentDistance < closestTempDistance) {
+                closestTemp = this.series[i];
+                closestTempDistance = currentDistance;
             }
-            return closestTemp;
         }
+        return closestTemp;
+
 
     }
 
@@ -146,16 +141,14 @@ public class TemperatureSeriesAnalysis {
     }
 
     public TempSummaryStatistics summaryStatistics() {
-        if (this.series.length == 0) {
-            throw new IllegalArgumentException("Temperature series is empty");
-        } else {
-            double avg = this.average();
-            double dev = this.deviation();
-            double min = this.min();
-            double max = this.max();
-            return new TempSummaryStatistics(avg, dev, min, max);
-        }
+        checkIllegalArgumentException(this.series);
+        double avg = this.average();
+        double dev = this.deviation();
+        double min = this.min();
+        double max = this.max();
+        return new TempSummaryStatistics(avg, dev, min, max);
     }
+
 
     public int addTemps(double... temps) {
         if (capacity - length < temps.length) {
@@ -164,12 +157,16 @@ public class TemperatureSeriesAnalysis {
             if (this.length >= 0) {
                 System.arraycopy(oldSeries, 0, newSeries, 0, this.length);
             }
+            this.length = this.series.length + temps.length;
             this.series = newSeries;
         }
         int j = 0;
         for (int i = this.length; i < this.length + temps.length; i++) {
             this.series[i] = temps[j];
+            j+=1;
         }
-        return this.series.length;
+        this.capacity = this.series.length;
+
+        return this.length;
     }
 }
