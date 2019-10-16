@@ -27,13 +27,13 @@ public class TemperatureSeriesAnalysis {
 
     }
 
-    public void checkIllegalArgumentException(double[] series) {
+    public void checkIllegalArgumentException(double[] series) throws IllegalArgumentException {
         if (this.series.length == 0) {
             throw new IllegalArgumentException("Temperature series is empty");
         }
     }
 
-    public double average() {
+    public double average() throws IllegalArgumentException {
         checkIllegalArgumentException(this.series);
         double average = 0.0;
 
@@ -44,7 +44,7 @@ public class TemperatureSeriesAnalysis {
 
     }
 
-    public double deviation() {
+    public double deviation() throws IllegalArgumentException {
         checkIllegalArgumentException(this.series);
         double standardDeviation = 0;
         double average = this.average();
@@ -58,7 +58,7 @@ public class TemperatureSeriesAnalysis {
 
     }
 
-    public double min() {
+    public double min() throws IllegalArgumentException {
         checkIllegalArgumentException(this.series);
         double min = this.series[0];
         for (int i = 1; i < this.series.length; i++) {
@@ -70,7 +70,7 @@ public class TemperatureSeriesAnalysis {
 
     }
 
-    public double max() {
+    public double max() throws IllegalArgumentException {
         checkIllegalArgumentException(this.series);
         double max = this.series[0];
         for (int i = 1; i < this.series.length; i++) {
@@ -82,13 +82,13 @@ public class TemperatureSeriesAnalysis {
 
     }
 
-    public double findTempClosestToZero() {
+    public double findTempClosestToZero() throws IllegalArgumentException {
         checkIllegalArgumentException(this.series);
         return this.findTempClosestToValue(0.0);
 
     }
 
-    public double findTempClosestToValue(double tempValue) {
+    public double findTempClosestToValue(double tempValue) throws IllegalArgumentException {
         checkIllegalArgumentException(this.series);
         double closestTemp = this.series[0];
         double closestTempDistance = Math.abs(closestTemp - tempValue);
@@ -140,7 +140,7 @@ public class TemperatureSeriesAnalysis {
         return tempsGreaterThen;
     }
 
-    public TempSummaryStatistics summaryStatistics() {
+    public TempSummaryStatistics summaryStatistics() throws IllegalArgumentException {
         checkIllegalArgumentException(this.series);
         double avg = this.average();
         double dev = this.deviation();
@@ -163,7 +163,7 @@ public class TemperatureSeriesAnalysis {
         int j = 0;
         for (int i = this.length; i < this.length + temps.length; i++) {
             this.series[i] = temps[j];
-            j+=1;
+            j += 1;
         }
         this.capacity = this.series.length;
 
