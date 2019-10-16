@@ -196,6 +196,15 @@ public class TemperatureSeriesAnalysisTest {
         assertEquals(50, seriesAnalysis.getCapacity());
         assertEquals(0, seriesAnalysis.getLength());
     }
+    @Test
+    public void testSummaryStatistics(){
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(shortTemperatureSeries);
+        TempSummaryStatistics statistics = seriesAnalysis.summaryStatistics();
+        assertEquals(5.0, statistics.getMaxTemp(), 0.001);
+        assertEquals(-5.0, statistics.getMinTemp(), 0.001);
+        assertEquals(1.0, statistics.getAvgTemp(), 0.001);
+        assertEquals(3.741, statistics.getDevTemp(), 0.001);
+    }
 
 
 }
