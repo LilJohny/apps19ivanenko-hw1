@@ -149,12 +149,9 @@ public class TemperatureSeriesAnalysisTest {
         double min = 2.0;
         double dev = 3.0;
         double avg = 4.0;
-        TempSummaryStatistics statistics = new TempSummaryStatistics(avg, dev, min, max);
-        assertEquals(avg, statistics.getAvgTemp(), 0.0001);
-        assertEquals(dev, statistics.getDevTemp(), 0.0001);
-        assertEquals(min, statistics.getMinTemp(), 0.0001);
-        assertEquals(max, statistics.getMaxTemp(), 0.0001);
-
+        TempSummaryStatistics statisticsFirst = new TempSummaryStatistics(avg, dev, min, max);
+        TempSummaryStatistics statisticsSecond = new TempSummaryStatistics(avg, dev, min, max);
+        assertEquals(statisticsFirst, statisticsSecond);
     }
     @Test
     public void testAddTemps(){
@@ -167,10 +164,6 @@ public class TemperatureSeriesAnalysisTest {
     public void testCreationFilure(){
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(illegalTemperatureSeries);
     }
-    public void testAverageEmptyArray(){
-        double expResult = 0.0;
-        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(emptyTemperatureSeries);
-        double actualResult = seriesAnalysis.average();
-        assertEquals(expResult, actualResult, 0.0001);
-    }
+
+
 }
