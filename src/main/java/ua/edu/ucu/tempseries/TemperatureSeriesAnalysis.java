@@ -7,8 +7,8 @@ public class TemperatureSeriesAnalysis {
     private static final int DEFAULT_SERIES_SIZE = 50;
     private static final double MIN_POSSIBLE_TEMP = -273.0;
     private double[] series;
-    public int length;
-    public int capacity;
+    private int length;
+    private int capacity;
 
     public TemperatureSeriesAnalysis() {
         this.series = new double[DEFAULT_SERIES_SIZE];
@@ -33,6 +33,14 @@ public class TemperatureSeriesAnalysis {
         if (this.series.length == 0) {
             throw new IllegalArgumentException("Temperature series is empty");
         }
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public int getLength() {
+        return length;
     }
 
     public double average() {

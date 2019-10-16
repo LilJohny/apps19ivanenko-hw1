@@ -190,10 +190,11 @@ public class TemperatureSeriesAnalysisTest {
     public void testCreationFilure(){
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(illegalTemperatureSeries);
     }
+    @Test
     public  void testCreationEmpty(){
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis();
-        assertEquals(50, seriesAnalysis.capacity);
-        assertEquals(0, seriesAnalysis.length);
+        assertEquals(50, seriesAnalysis.getCapacity());
+        assertEquals(0, seriesAnalysis.getLength());
     }
 
 
