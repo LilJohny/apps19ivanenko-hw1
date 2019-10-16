@@ -7,11 +7,13 @@ public class TemperatureSeriesAnalysis {
     private static final int DEFAULT_SERIES_SIZE = 50;
     private static final double MIN_POSSIBLE_TEMP = -273.0;
     private double[] series;
-    private int length;
-    private int capacity;
+    public int length;
+    public int capacity;
 
     public TemperatureSeriesAnalysis() {
         this.series = new double[DEFAULT_SERIES_SIZE];
+        this.capacity = DEFAULT_SERIES_SIZE;
+        this.length = 0;
     }
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
