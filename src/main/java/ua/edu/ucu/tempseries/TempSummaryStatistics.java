@@ -1,8 +1,6 @@
 package ua.edu.ucu.tempseries;
 
 
-import java.util.Objects;
-
 public class TempSummaryStatistics {
     private final double maxTemp;
     private final double minTemp;
