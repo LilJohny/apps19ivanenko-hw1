@@ -25,10 +25,10 @@ public class TempSummaryStatistics {
             return false;
         }
         TempSummaryStatistics that = (TempSummaryStatistics) o;
-        return Double.compare(that.maxTemp, maxTemp) == 0 &&
-                Double.compare(that.minTemp, minTemp) == 0 &&
-                Double.compare(that.avgTemp, avgTemp) == 0 &&
-                Double.compare(that.devTemp, devTemp) == 0;
+        return Double.compare(that.maxTemp, maxTemp) == 0
+                && Double.compare(that.minTemp, minTemp) == 0
+                && Double.compare(that.avgTemp, avgTemp) == 0
+                && Double.compare(that.devTemp, devTemp) == 0;
     }
 
     @Override
