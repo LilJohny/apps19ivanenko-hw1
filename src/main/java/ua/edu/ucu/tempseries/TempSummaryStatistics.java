@@ -7,6 +7,14 @@ public class TempSummaryStatistics {
     private final double maxTemp;
     private final double minTemp;
     private final double avgTemp;
+    private final double devTemp;
+
+    TempSummaryStatistics(double avg, double dev, double min, double max) {
+        this.avgTemp = avg;
+        this.devTemp = dev;
+        this.minTemp = min;
+        this.maxTemp = max;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -27,16 +35,6 @@ public class TempSummaryStatistics {
     public int hashCode() {
         return Objects.hash(maxTemp, minTemp, avgTemp, devTemp);
     }
-
-    private final double devTemp;
-
-    TempSummaryStatistics(double avg, double dev, double min, double max) {
-        this.avgTemp = avg;
-        this.devTemp = dev;
-        this.minTemp = min;
-        this.maxTemp = max;
-    }
-
 
     public double getMaxTemp() {
         return maxTemp;
