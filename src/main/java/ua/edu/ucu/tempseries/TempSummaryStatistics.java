@@ -1,11 +1,33 @@
 package ua.edu.ucu.tempseries;
 
 
+import java.util.Objects;
 
 public class TempSummaryStatistics {
     private final double maxTemp;
     private final double minTemp;
     private final double avgTemp;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        TempSummaryStatistics that = (TempSummaryStatistics) o;
+        return Double.compare(that.maxTemp, maxTemp) == 0 &&
+                Double.compare(that.minTemp, minTemp) == 0 &&
+                Double.compare(that.avgTemp, avgTemp) == 0 &&
+                Double.compare(that.devTemp, devTemp) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(maxTemp, minTemp, avgTemp, devTemp);
+    }
+
     private final double devTemp;
 
     TempSummaryStatistics(double avg, double dev, double min, double max) {
@@ -15,19 +37,6 @@ public class TempSummaryStatistics {
         this.maxTemp = max;
     }
 
-    @Override
-    public int hashCode(){
-        return Double.valueOf(avgTemp+devTemp+minTemp+maxTemp).hashCode();
-    }
-    @Override
-    public boolean equals(Object o) {
-        if (o instanceof TempSummaryStatistics) {
-            TempSummaryStatistics other = ((TempSummaryStatistics) o);
-            return this.hashCode() == other.hashCode();
-        } else {
-            return false;
-        }
-    }
 
     public double getMaxTemp() {
         return maxTemp;
