@@ -27,13 +27,13 @@ public class TemperatureSeriesAnalysis {
 
     }
 
-    public void checkIllegalArgumentException(){
+    public void checkIllegalArgumentException() {
         if (this.series.length == 0) {
             throw new IllegalArgumentException("Temperature series is empty");
         }
     }
 
-    public double average(){
+    public double average() {
         checkIllegalArgumentException();
         double average = 0.0;
 
@@ -88,7 +88,7 @@ public class TemperatureSeriesAnalysis {
 
     }
 
-    public double findTempClosestToValue(double tempValue) throws IllegalArgumentException {
+    public double findTempClosestToValue(double tempValue) {
         checkIllegalArgumentException();
         double closestTemp = this.series[0];
         double closestTempDistance = Math.abs(closestTemp - tempValue);
@@ -140,7 +140,7 @@ public class TemperatureSeriesAnalysis {
         return tempsGreaterThen;
     }
 
-    public TempSummaryStatistics summaryStatistics() throws IllegalArgumentException {
+    public TempSummaryStatistics summaryStatistics() {
         checkIllegalArgumentException();
         double avg = this.average();
         double dev = this.deviation();
