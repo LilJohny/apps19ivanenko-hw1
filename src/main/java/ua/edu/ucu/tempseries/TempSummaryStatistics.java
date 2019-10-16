@@ -16,14 +16,14 @@ public class TempSummaryStatistics {
     }
 
     @Override
+    public int hashCode(){
+        return Double.valueOf(avgTemp+devTemp+minTemp+maxTemp).hashCode();
+    }
+    @Override
     public boolean equals(Object o) {
         if (o instanceof TempSummaryStatistics) {
             TempSummaryStatistics other = ((TempSummaryStatistics) o);
-            boolean avgEq = this.getAvgTemp() == other.getAvgTemp();
-            boolean devEq = this.getDevTemp() == other.getDevTemp();
-            boolean minEq = this.getMinTemp() == other.getMinTemp();
-            boolean maxEq = this.getMaxTemp() == other.getMaxTemp();
-            return avgEq && devEq && minEq && maxEq;
+            return this.hashCode() == other.hashCode();
         } else {
             return false;
         }
