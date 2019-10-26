@@ -50,7 +50,7 @@ public class TemperatureSeriesAnalysis {
         for (double temperature : this.series) {
             average += temperature;
         }
-        return average / this.series.length;
+        return average / this.length;
 
     }
 
@@ -176,7 +176,7 @@ public class TemperatureSeriesAnalysis {
             j += 1;
         }
         this.capacity = this.series.length;
-
+        this.length+=temps.length;
         return this.length;
     }
 }
